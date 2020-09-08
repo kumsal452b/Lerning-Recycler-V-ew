@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,12 @@ public class ExampleItemAdaptar extends RecyclerView.Adapter<ExampleItemAdaptar.
             imageView = itemView.findViewById(R.id.image);
             textViewCreator = itemView.findViewById(R.id.creator);
             textViewLike = itemView.findViewById(R.id.like);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context,"Tiklama tamam",Toast.LENGTH_LONG);
+                }
+            });
 
         }
     }
