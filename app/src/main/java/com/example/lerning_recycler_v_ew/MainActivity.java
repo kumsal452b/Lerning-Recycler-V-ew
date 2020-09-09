@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements ExampleItemAdaptar.OnItemClickListener {
     private RecyclerView recyclerView;
     private ExampleItemAdaptar exampleItemAdaptar;
     protected ArrayList<ExampleItem> exampleItems;
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     exampleItemAdaptar=new ExampleItemAdaptar(MainActivity.this,exampleItems);
                     recyclerView.setAdapter(exampleItemAdaptar);
+                    exampleItemAdaptar.setOnItemClickListener(MainActivity.this);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -68,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(request);
 
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        
     }
 }
