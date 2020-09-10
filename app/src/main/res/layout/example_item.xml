@@ -16,6 +16,11 @@
             android:layout_height="222dp"
             android:src="@mipmap/ic_launcher"
             />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/btn"/>
+
         <TextView
             android:id="@+id/creator"
             android:layout_width="wrap_content"

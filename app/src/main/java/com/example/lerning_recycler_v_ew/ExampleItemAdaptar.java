@@ -1,9 +1,11 @@
 package com.example.lerning_recycler_v_ew;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,15 +48,27 @@ public class ExampleItemAdaptar extends RecyclerView.Adapter<ExampleItemAdaptar.
     public int getItemCount() {
         return arrayList.size();
     }
+
     public class ExampleViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textViewCreator;
         public TextView textViewLike;
-        public ExampleViewHolder(@NonNull View itemView) {
+        public Button btn;
+        public ExampleViewHolder(@NonNull final View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             textViewCreator = itemView.findViewById(R.id.creator);
             textViewLike = itemView.findViewById(R.id.like);
+            btn=itemView.findViewById(R.id.btn);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos=getAdapterPosition();
+                   ExampleItem exampleItem=MainActivity.exampleItems.get(pos);
+                    Intent intent=new Intent(context,DetailActivity.class);
+                    intent.putExtra("URl",exampleItem.getPageUrl());
+                }
+            });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

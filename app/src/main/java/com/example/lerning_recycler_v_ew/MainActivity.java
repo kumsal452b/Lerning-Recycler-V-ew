@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DownloadManager;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,9 +27,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity  implements ExampleItemAdaptar.OnItemClickListener {
     private RecyclerView recyclerView;
     private ExampleItemAdaptar exampleItemAdaptar;
-    protected ArrayList<ExampleItem> exampleItems;
+    public static  ArrayList<ExampleItem> exampleItems;
     private RequestQueue requestQueue;
-
+    public static final String EXTRA_URL="ImageURL";
+    public static final String EXTRA_Creator="creator";
+    public static final String Likes="likes";
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +40,13 @@ public class MainActivity extends AppCompatActivity  implements ExampleItemAdapt
         recyclerView=findViewById(R.id.rec_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         exampleItems=new ArrayList<>();
         requestQueue= Volley.newRequestQueue(this);
         parseJson();
 
+    }
+    public void start(Intent intent){
+        startActivity(intent);
     }
     private void parseJson(){
         String uri="https://pixabay.com/api/?key=18227087-3db30ac46e31758c6e47e066f&q=yellow+flowers&image_type=photo";
@@ -50,8 +59,9 @@ public class MainActivity extends AppCompatActivity  implements ExampleItemAdapt
                         JSONObject hit=array.getJSONObject(i);
                         String creatorName=hit.getString("user");
                         String imageUrl=hit.getString("webformatURL");
+                        String webpageurl=hit.getString("pageURL");
                         int likes=hit.getInt("likes");
-                        exampleItems.add(new ExampleItem(imageUrl,creatorName,likes));
+                        exampleItems.add(new ExampleItem(imageUrl,creatorName,likes,null,webpageurl));
                     }
                     exampleItemAdaptar=new ExampleItemAdaptar(MainActivity.this,exampleItems);
                     recyclerView.setAdapter(exampleItemAdaptar);
@@ -73,6 +83,12 @@ public class MainActivity extends AppCompatActivity  implements ExampleItemAdapt
 
     @Override
     public void OnItemClick(int position) {
-        
+        Intent intent=new Intent(this,DetailActivity.class);
+        ExampleItem clickItem=exampleItems.get(position);
+        intent.putExtra(EXTRA_URL,clickItem.getImageurl());
+        intent.putExtra(EXTRA_Creator,clickItem.getCreator());
+        intent.putExtra(Likes,clickItem.getLikec());
+        startActivity(intent);
+
     }
 }
