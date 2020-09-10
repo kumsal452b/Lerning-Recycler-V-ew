@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity  implements ExampleItemAdapt
         intent.putExtra(EXTRA_URL,clickItem.getImageurl());
         intent.putExtra(EXTRA_Creator,clickItem.getCreator());
         intent.putExtra(Likes,clickItem.getLikec());
-        intent.putExtra("")
+        intent.putExtra("pageURL",clickItem.getImageurl());
         startActivity(intent);
 
     }
