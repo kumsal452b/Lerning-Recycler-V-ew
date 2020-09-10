@@ -63,15 +63,6 @@ public class ExampleItemAdaptar extends RecyclerView.Adapter<ExampleItemAdaptar.
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int pos=getAdapterPosition();
-                   ExampleItem exampleItem=MainActivity.exampleItems.get(pos);
-                    Intent intent=new Intent(context,DetailActivity.class);
-                    intent.putExtra("URl",exampleItem.getPageUrl());
-                }
-            });
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
                     if (onItemClickListener!=null){
                         int positon=getAdapterPosition();
                         if (positon!=RecyclerView.NO_POSITION){
@@ -79,6 +70,13 @@ public class ExampleItemAdaptar extends RecyclerView.Adapter<ExampleItemAdaptar.
 
                         }
                     }
+
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
                 }
             });
         }
