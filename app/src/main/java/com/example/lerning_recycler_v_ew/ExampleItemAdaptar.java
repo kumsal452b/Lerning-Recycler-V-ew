@@ -67,7 +67,7 @@ public class ExampleItemAdaptar extends RecyclerView.Adapter<ExampleItemAdaptar.
                         int positon=getAdapterPosition();
                         if (positon!=RecyclerView.NO_POSITION){
                             onItemClickListener.OnItemClick(positon);
-                           
+
 
                         }
                     }
