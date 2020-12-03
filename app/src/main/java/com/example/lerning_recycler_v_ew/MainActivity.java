@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity  implements ExampleItemAdapt
     }
     private void parseJson(){
         String uri="https://pixabay.com/api/?key=18227087-3db30ac46e31758c6e47e066f&q=yellow+flowers&image_type=photo";
+
         final JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, uri, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
